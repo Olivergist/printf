@@ -2,52 +2,53 @@
 #include <stdarg.h>
 #include "main.h"
 
+/**
+ * _printf - produces output according to a format
+ * @format: character string
+ *
+ * Return: 0.
+ */
 
 int _printf(const char *format, ...)
 {
 	va_list args;
+	int i = 0, j = 0, count = 0;
+	print_f *print;
+
 	va_start(args, format);
-
-	int count = 0;
-
-	while (*format != '\0')
+	while (format[i] != '\0')
 	{
-		if (*format == '%')
+		if (format[i] != '%')
 		{
-			format++;
-
-			if (*format == 'c')
-			{
-				int c = va_arg(args, int);
-				putchar(c);
-				count++;
-			}
-			else if (*format == 's')
-			{
-				char *s = va_arg(args, char *);
-				while (*s != '\0')
-				{
-					putchar(*s);
-					s++;
-					count++;
-				}
-			}
-			else if (*format == '%')
-			{
-				putchar('%');
-				count++;
-			}
+			putchar(format[i]);
+			count++;
 		}
 		else
 		{
-			putchar(*format);
-			count++;
+			i++;
+			print = func_comp(format[i]);
+			if (print == NULL)
+			{
+				putchar('%');
+				putchar(format[i]);
+				count += 2;
+			}
+			else
+			{
+				while (print[j].specifier != '\0')
+				{
+					if (print[j].specifier == format[i])
+					{
+						count += print[j].f(args, format);
+						break;
+					}
+					j++;
+				}
+			}
 		}
-
-		format++;
+		i++;
 	}
-
 	va_end(args);
-
-	return count;
+	return (count);
 }
+
