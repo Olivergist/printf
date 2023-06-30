@@ -14,6 +14,9 @@
 int charcter_p(va_list strg, const char *s)
 {
 	char name = va_arg(strg, int);
+
+	(void)s;
+
 	printf("%c", name);
 	return (0);
 }
@@ -29,6 +32,9 @@ int charcter_p(va_list strg, const char *s)
 int string_p(va_list strg, const char *s)
 {
 	char* name = va_arg(strg, char*);
+
+	(void)s;
+
 	printf("%s", name);
 	return (0);
 }
@@ -43,6 +49,8 @@ int string_p(va_list strg, const char *s)
 
 int perc_p(va_list strg, const char *s)
 {
+	(void)s;
+	(void)strg;
 	putchar('%');
 	return (0);
 }
@@ -58,6 +66,9 @@ int perc_p(va_list strg, const char *s)
 int decimal_p(va_list strg, const char *s)
 {
 	int num = va_arg(strg, int);
+
+	(void)s;
+
 	printf("%d", num);
 	return (0);
 }
@@ -73,6 +84,9 @@ int decimal_p(va_list strg, const char *s)
 int integer_p(va_list strg, const char *s)
 {
 	int num = va_arg(strg, int);
+
+	(void)s;
+
 	printf("%d", num);
 	return (0);
 }
@@ -88,6 +102,9 @@ int integer_p(va_list strg, const char *s)
 int float_p(va_list strg, const char *s)
 {
 	double num = va_arg(strg, double);
+
+	(void)s;
+
 	printf("%f", num);
 	return (0);
 }
@@ -103,6 +120,9 @@ int float_p(va_list strg, const char *s)
 int u_decimal_p(va_list strg, const char *s)
 {
 	unsigned int num = va_arg(strg, unsigned int);
+
+	(void)s;
+
 	printf("%u", num);
 	return (0);
 }
